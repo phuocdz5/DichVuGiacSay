@@ -28,6 +28,8 @@ public class Login extends AppCompatActivity {
     private EditText edus, edpw;
     private CheckBox chk;
     UserDAO userDAO;
+
+    String Text = "Anh Viết Ở Đây Nề. kk";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
