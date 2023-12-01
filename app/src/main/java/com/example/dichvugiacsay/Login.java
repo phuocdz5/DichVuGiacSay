@@ -30,6 +30,7 @@ public class Login extends AppCompatActivity {
     UserDAO userDAO;
 
     String Text = "Anh Viết Ở Đây Nề. kk";
+    String text1 ="Teghkssasldamskmk";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
