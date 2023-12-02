@@ -175,12 +175,12 @@ public class Fragment_HomePage extends Fragment {
 
     private List<User_CardView> getListUserCartView(){
         List<User_CardView> list = new ArrayList<>();
-        list.add(new User_CardView(R.drawable.icon_dichvu1, "Giặt ủi"));
-        list.add(new User_CardView(R.drawable.icon_dichvu, "Giặt hấp"));
-        list.add(new User_CardView(R.drawable.icon_dichvu2, "Giặt sấy"));
-        list.add(new User_CardView(R.drawable.icon_dichvu3, "Giặt giày"));
-        list.add(new User_CardView(R.drawable.icon_dichvu4, "Giặt vest"));
-        list.add(new User_CardView(R.drawable.icon_dichvu5, "Khác"));
+        list.add(new User_CardView(1, R.drawable.icon_dichvu1, "Giặt giày"));
+        list.add(new User_CardView(2 ,R.drawable.icon_dichvu2, "Giặt sấy"));
+        list.add(new User_CardView(3, R.drawable.icon_dichvu, "Giặt ủi"));
+        list.add(new User_CardView(4, R.drawable.icon_dichvu3, "Giặt hấp"));
+        list.add(new User_CardView(5, R.drawable.icon_dichvu4, "Giặt vest"));
+        list.add(new User_CardView(6, R.drawable.icon_dichvu5, "Khác"));
 
         return list;
     }
