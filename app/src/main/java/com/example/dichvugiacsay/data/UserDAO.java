@@ -49,6 +49,7 @@ public class UserDAO {
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         User user = new User(
+                                jsonObject.getString("id"),
                                 jsonObject.getString("name"),
                                 jsonObject.getString("address"),
                                 jsonObject.getString("email"),
