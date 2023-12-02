@@ -2,14 +2,23 @@ package com.example.dichvugiacsay.Model;
 
 public class DonHang {
     private int  quantitty,  price;
-    private String img, name, description;
+    private String img, name, description, address;
 
-    public DonHang(int quantitty, int price, String img, String name, String description) {
+    public DonHang(int quantitty, int price, String img, String name, String description, String address) {
         this.quantitty = quantitty;
         this.price = price;
         this.img = img;
         this.name = name;
         this.description = description;
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getQuantitty() {
@@ -60,6 +69,7 @@ public class DonHang {
                 ", img='" + img + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

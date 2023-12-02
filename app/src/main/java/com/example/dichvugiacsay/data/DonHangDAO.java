@@ -52,7 +52,8 @@ public class DonHangDAO {
                                 jsonObject.getInt("price"),
                                 jsonObject.getString("img"),
                                 jsonObject.getString("name"),
-                                jsonObject.getString("description")
+                                jsonObject.getString("description"),
+                                jsonObject.getString("address")
                         ));
                     }
                     xuli.xuli(arrayList);
