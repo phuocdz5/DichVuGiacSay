@@ -24,11 +24,14 @@ import java.util.Map;
 
 public class DonHangDAO {
     private Context context;
-    private String xacNhanURL = IP.IP + "/giatsay/getXacNhanList.php";
+    private String DonhangInnerURL = IP.IP + "/giatsay/getOrderInner.php";
     private String readOutterURL = IP.IP + "/giatsay/getDonHangOuter.php";
+    private String hoanthanhOutterURL = IP.IP + "/giatsay/getDonHangHoanThanh.php";
+
 
     private String dangGiaoURL = IP.IP + "/giatsay/getDonHangDangGiao.php";
-    private String hoanThanhURL = IP.IP + "";
+    private String InsertURL = IP.IP + "/giatsay/DonHanginsert.php";
+    private String InsertCTDHURL = IP.IP + "/giatsay/chitietdonhanginsert.php";
     public interface DonHangITF{void xuli(Object object);}
 
     public DonHangDAO(Context context) {
@@ -36,7 +39,7 @@ public class DonHangDAO {
     }
     public void getDonHang(String iddonhang, DonHangITF xuli){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, xacNhanURL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, DonhangInnerURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 ArrayList<DonHang> arrayList = new ArrayList<>();

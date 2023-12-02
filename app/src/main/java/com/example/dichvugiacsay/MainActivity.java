@@ -41,12 +41,8 @@ public class MainActivity extends AppCompatActivity {
                     fragmentData(new Fragment_HomePage());
                 } else if (id == R.id.don_hang) {
                     fragmentData(new Fragment_Cart());
-                } else if (id == R.id.lich_su) {
-                    fragmentData(new Fragment_History());
                 } else {
                    fragmentData(new Fragment_Account());
-
-
                 }
                 return true;
             }
