@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dichvugiacsay.Model.OrderDetail;
+import com.example.dichvugiacsay.Model.User;
 import com.example.dichvugiacsay.R;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class OrderDetailRatingAdapter extends RecyclerView.Adapter<OrderDetailRa
     private final ArrayList<OrderDetail> arr;
     private final Context context;
 
-    public OrderDetailRatingAdapter(ArrayList<OrderDetail> arr, Context context) {
+    public OrderDetailRatingAdapter(ArrayList<OrderDetail> arr, Context context, User user, RatingITF ratingITF) {
         this.arr = arr;
         this.context = context;
     }
@@ -62,6 +63,10 @@ public class OrderDetailRatingAdapter extends RecyclerView.Adapter<OrderDetailRa
     @Override
     public int getItemCount() {
         return arr.size();
+    }
+
+    public interface RatingITF {
+        void xuli(Object obj);
     }
 
     public static class ViewModel extends RecyclerView.ViewHolder {
