@@ -3,6 +3,7 @@ package com.example.dichvugiacsay.data;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -31,6 +32,8 @@ public class UserDAO {
     private String checkLoginURL = IP.IP+"/giatsay/checklogin.php";
     private String regAccount = IP.IP + "/giatsay/regAccount.php";
     private String changPasswordURL = IP.IP + "/giatsay/changePassword.php";
+
+    private String changInfoURL = IP.IP + "/giatsay/userChangInfo.php";
     private Context context;
     public UserDAO(Context context) {
         this.context = context;
@@ -159,6 +162,35 @@ public class UserDAO {
     private boolean validateForm(String str){
         return (str.isEmpty() || str.equals("")) ? true : false ;
 
+    }
+
+    public interface UserITF{void xuli(Object obj);}
+    public void update(User user, UserITF xuli){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, changInfoURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                xuli.xuli(null);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error userdao 179", error.getMessage());
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("username", user.getUsername());
+                map.put("name", user.getName());
+                map.put("phone", user.getPhone());
+                map.put("email", user.getEmail());
+                map.put("address", user.getAddress());
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
 }
