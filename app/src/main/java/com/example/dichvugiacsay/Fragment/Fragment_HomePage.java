@@ -2,6 +2,7 @@ package com.example.dichvugiacsay.Fragment;
 
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,16 +23,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.dichvugiacsay.Adapter.Slider_Image_Adapter;
 import com.example.dichvugiacsay.Adapter.StoreAdapter;
 import com.example.dichvugiacsay.Adapter.TipsAdapter;
 import com.example.dichvugiacsay.Adapter.User_CardViewAdapter;
+import com.example.dichvugiacsay.MainActivity;
 import com.example.dichvugiacsay.Model.Slider_Image;
 import com.example.dichvugiacsay.Model.Store;
 import com.example.dichvugiacsay.Model.Tips;
+import com.example.dichvugiacsay.Model.User;
 import com.example.dichvugiacsay.Model.User_CardView;
 import com.example.dichvugiacsay.R;
+import com.example.dichvugiacsay.ServiceDetailActivity;
 import com.example.dichvugiacsay.data.StoreDAO;
 
 import java.util.ArrayList;
@@ -54,6 +59,10 @@ public class Fragment_HomePage extends Fragment {
     private StoreAdapter storeAdapter;
     private final Handler handler = new Handler(Looper.getMainLooper());
     private StoreDAO storeDAO;
+
+    private MainActivity mainActivity;
+
+    private User user;
 
     private final Runnable runnable = new Runnable() {
         @Override
@@ -111,7 +120,21 @@ public class Fragment_HomePage extends Fragment {
             }
         });
 
-        userCartViewAdapter = new User_CardViewAdapter(getContext());
+
+
+        userCartViewAdapter = new User_CardViewAdapter(getContext(), new User_CardViewAdapter.User_CardViewITF() {
+            @Override
+            public void xuli(int pos) {
+                if (pos == 6){
+                    Toast.makeText(mainActivity, "Đang phát triên thêm dịch vụ", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent i = new Intent(getContext(), ServiceDetailActivity.class);
+                    i.putExtra("id", pos);
+                    i.putExtra("user",user);
+                    startActivity(i);
+                }
+            }
+        });
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);

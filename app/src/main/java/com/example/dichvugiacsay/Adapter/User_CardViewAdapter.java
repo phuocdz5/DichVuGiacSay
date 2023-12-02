@@ -22,6 +22,8 @@ public class User_CardViewAdapter extends RecyclerView.Adapter<User_CardViewAdap
 
     private User_CardViewAdapter.UserListener UserListener;
 
+    public interface User_CardViewITF{void xuli(int pos);}
+
     public interface UserListener{
         void onItemClick( int pos);
     }
@@ -30,9 +32,12 @@ public class User_CardViewAdapter extends RecyclerView.Adapter<User_CardViewAdap
         this.UserListener = UserListener;
     }
 
-    public User_CardViewAdapter(Context context) {
+    User_CardViewITF userCardViewITF;
+    public User_CardViewAdapter(Context context, User_CardViewITF userCardViewITF) {
         this.context = context;
+        this.userCardViewITF = userCardViewITF;
     }
+
 
     public void setData(List<User_CardView> list) {
         this.mList = list;
