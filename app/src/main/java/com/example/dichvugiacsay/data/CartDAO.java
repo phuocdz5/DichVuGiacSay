@@ -44,6 +44,7 @@ public class CartDAO {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                         arrayList.add(new Cart(
+                                jsonObject.getInt("idCart"),
                                 jsonObject.getInt("idService"),
                                 jsonObject.getInt("quantity"),
                                 jsonObject.getInt("price"),

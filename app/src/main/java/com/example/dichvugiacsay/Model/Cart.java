@@ -3,16 +3,25 @@ package com.example.dichvugiacsay.Model;
 import java.io.Serializable;
 
 public class Cart implements Serializable {
-    private int  idService, quantity, priceService;
+    private int  idCart, idService, quantity, priceService;
     private String nameService, description , img;
 
-    public Cart(int idService, int quantity, int priceService, String nameService, String description, String img) {
+    public Cart(int idCart, int idService, int quantity, int priceService, String nameService, String description, String img) {
+        this.idCart = idCart;
         this.idService = idService;
         this.quantity = quantity;
         this.priceService = priceService;
         this.nameService = nameService;
         this.description = description;
         this.img = img;
+    }
+
+    public int getIdCart() {
+        return idCart;
+    }
+
+    public void setIdCart(int idCart) {
+        this.idCart = idCart;
     }
 
     public String getImg() {
