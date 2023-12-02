@@ -11,7 +11,6 @@ import android.widget.FrameLayout;
 
 import com.example.dichvugiacsay.Fragment.Fragment_Account;
 import com.example.dichvugiacsay.Fragment.Fragment_Cart;
-import com.example.dichvugiacsay.Fragment.Fragment_History;
 import com.example.dichvugiacsay.Fragment.Fragment_HomePage;
 import com.example.dichvugiacsay.Model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

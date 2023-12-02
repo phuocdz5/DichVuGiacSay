@@ -7,7 +7,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.dichvugiacsay.Fragment.Fragment_Account;
 import com.example.dichvugiacsay.Fragment.Fragment_Cart;
-import com.example.dichvugiacsay.Fragment.Fragment_History;
 import com.example.dichvugiacsay.Fragment.Fragment_HomePage;
 
 public class ViewPagerNavigationBottomAdapter extends FragmentStateAdapter {

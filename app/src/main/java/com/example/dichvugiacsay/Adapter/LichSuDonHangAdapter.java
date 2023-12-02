@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dichvugiacsay.Model.LichSuDonHang;
 import com.example.dichvugiacsay.R;
 
 import java.util.List;
