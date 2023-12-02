@@ -4,19 +4,12 @@ import java.io.Serializable;
 
 public class OrderDetail implements Serializable {
     private String name;
-    private int  idOrder, quantity,  price;
+    private String  idOrder, quantity,  price;
     private String status;
-    private int idStore, idService;
+    private String idStore, idService;
+    private String img;
 
-    public OrderDetail(String name, int idOrder,int quantity, int price, String status) {
-        this.name = name;
-        this.idOrder = idOrder;
-        this.quantity = quantity;
-        this.price = price;
-        this.status = status;
-    }
-
-    public OrderDetail(String name, int idOrder, int quantity, int price, String status, int idStore, int idService) {
+    public OrderDetail(String name, String idOrder, String quantity, String price, String status, String idStore, String idService, String img) {
         this.name = name;
         this.idOrder = idOrder;
         this.quantity = quantity;
@@ -24,46 +17,7 @@ public class OrderDetail implements Serializable {
         this.status = status;
         this.idStore = idStore;
         this.idService = idService;
-    }
-
-    public int getIdStore() {
-        return idStore;
-    }
-
-    public void setIdStore(int idStore) {
-        this.idStore = idStore;
-    }
-
-    public int getIdService() {
-        return idService;
-    }
-
-    public void setIdService(int idService) {
-        this.idService = idService;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getIdOrder() {
-        return idOrder;
-    }
-
-    public void setIdOrder(int idOrder) {
-        this.idOrder = idOrder;
+        this.img = img;
     }
 
     public String getName() {
@@ -74,25 +28,59 @@ public class OrderDetail implements Serializable {
         this.name = name;
     }
 
+    public String getIdOrder() {
+        return idOrder;
+    }
 
+    public void setIdOrder(String idOrder) {
+        this.idOrder = idOrder;
+    }
 
+    public String getQuantity() {
+        return quantity;
+    }
 
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
 
-
-
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "SerVice{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getIdStore() {
+        return idStore;
+    }
+
+    public void setIdStore(String idStore) {
+        this.idStore = idStore;
+    }
+
+    public String getIdService() {
+        return idService;
+    }
+
+    public void setIdService(String idService) {
+        this.idService = idService;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
