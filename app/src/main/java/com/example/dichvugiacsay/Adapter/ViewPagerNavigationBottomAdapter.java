@@ -23,8 +23,6 @@ public class ViewPagerNavigationBottomAdapter extends FragmentStateAdapter {
             case 1:
                 return new Fragment_Cart();
             case 2:
-                return new Fragment_History();
-            case 3:
                 return new Fragment_Account();
             default:
                 return new Fragment_HomePage();
@@ -33,6 +31,6 @@ public class ViewPagerNavigationBottomAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 3;
     }
 }
