@@ -25,7 +25,9 @@ import com.example.dichvugiacsay.Adapter.SliderStoreAdapter;
 import com.example.dichvugiacsay.Model.Service;
 import com.example.dichvugiacsay.Model.SliderImageStore;
 import com.example.dichvugiacsay.Model.Store;
+import com.example.dichvugiacsay.Model.User;
 import com.example.dichvugiacsay.R;
+import com.example.dichvugiacsay.data.CartDAO;
 import com.example.dichvugiacsay.data.StoreDAO;
 
 import java.util.ArrayList;
@@ -41,11 +43,17 @@ public class FragmentStore extends Fragment {
     private ViewPager2 viewPager2;
     private RecyclerView recyclerView;
     private Button btnBack,btnCart;
+
+    private CartDAO cartDAO;
+
+    User user;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.store_fragment,container,false);
         viewPager2 = view.findViewById(R.id.ViewPagerSlide);
         Bundle bundle = getArguments();
         idStore = bundle.getInt("id", 0);
+        cartDAO = new CartDAO(getContext());
+        storeDAO = new StoreDAO(getContext());
         storeDAO = new StoreDAO(getActivity());
         name = view.findViewById(R.id.storeName);
         address = view.findViewById(R.id.storeAddress);
@@ -55,6 +63,7 @@ public class FragmentStore extends Fragment {
         LinearLayoutManager l = new LinearLayoutManager(getActivity());
         l.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(l);
+        user = (User) bundle.getSerializable("user");
         setData();
         btnBack.setOnClickListener(v->{
             loadFragment(new Fragment_HomePage());
@@ -118,7 +127,7 @@ public class FragmentStore extends Fragment {
                 serviceAdapter = new ServiceAdapter((ArrayList<Service>) obj, getActivity(), new ServiceAdapter.AddCart() {
                     @Override
                     public void addcart(int idService) {
-
+                        cartDAO.insert(user, idService+"");
                     }
                 });
                 recyclerView.setAdapter(serviceAdapter);
