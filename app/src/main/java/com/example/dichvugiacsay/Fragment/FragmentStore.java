@@ -1,6 +1,7 @@
 package com.example.dichvugiacsay.Fragment;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -50,8 +51,8 @@ public class FragmentStore extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.store_fragment,container,false);
         viewPager2 = view.findViewById(R.id.ViewPagerSlide);
-        Bundle bundle = getArguments();
-        idStore = bundle.getInt("id", 0);
+        Intent intent = getActivity().getIntent();
+        idStore = intent.getIntExtra("id", 0);
         cartDAO = new CartDAO(getContext());
         storeDAO = new StoreDAO(getContext());
         storeDAO = new StoreDAO(getActivity());
@@ -63,7 +64,7 @@ public class FragmentStore extends Fragment {
         LinearLayoutManager l = new LinearLayoutManager(getActivity());
         l.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(l);
-        user = (User) bundle.getSerializable("user");
+        user = (User) intent.getSerializableExtra("user");
         setData();
         btnBack.setOnClickListener(v->{
             loadFragment(new Fragment_HomePage());
