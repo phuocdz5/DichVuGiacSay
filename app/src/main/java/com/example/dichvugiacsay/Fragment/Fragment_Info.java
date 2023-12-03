@@ -31,6 +31,7 @@ public class Fragment_Info extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment__info, container, false);
         btnBack = view.findViewById(R.id.btnBack);
+        tv_name = view.findViewById(R.id.tv_nameInfo);
         edtName = view.findViewById(R.id.edtUserNameInfo);
         edtEmail = view.findViewById(R.id.edtEmailInfo);
         edtPhone = view.findViewById(R.id.edtPhoneNumberInfo);
@@ -42,6 +43,7 @@ public class Fragment_Info extends Fragment {
         edtName.setText(user.getName());
         edtEmail.setText(user.getEmail());
         edtPhone.setText(user.getPhone());
+        edtAddress.setText(user.getAddress());
         btnBack.setOnClickListener(v->{
             loadFragment(new Fragment_Account());
         });
@@ -65,6 +67,7 @@ public class Fragment_Info extends Fragment {
                         Toast.makeText(getContext(), "Thông tin đã được thay đổi", Toast.LENGTH_SHORT).show();
                     }
                 });
+                return;
             }
             Toast.makeText(getContext(), "Kiểm tra và nhập lại thông tin", Toast.LENGTH_SHORT).show();
         });
