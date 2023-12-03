@@ -29,8 +29,7 @@ public class Login extends AppCompatActivity {
     private CheckBox chk;
     UserDAO userDAO;
 
-    String Text = "Anh Viết Ở Đây Nề. kk";
-    String text1 ="Teghkssasldamskmkddd";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
