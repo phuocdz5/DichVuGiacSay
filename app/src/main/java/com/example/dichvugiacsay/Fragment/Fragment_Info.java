@@ -31,7 +31,6 @@ public class Fragment_Info extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment__info, container, false);
         btnBack = view.findViewById(R.id.btnBack);
-        tv_name = view.findViewById(R.id.tv_nameInfo);
         edtName = view.findViewById(R.id.edtUserNameInfo);
         edtEmail = view.findViewById(R.id.edtEmailInfo);
         edtPhone = view.findViewById(R.id.edtPhoneNumberInfo);
@@ -61,7 +60,7 @@ public class Fragment_Info extends Fragment {
                 userDAO.update(user, new UserDAO.UserITF() {
                     @Override
                     public void xuli(Object obj) {
-                        tv_name.setText(user.getName());
+                        edtName.setText(user.getName());
                         edtPhone.setText(user.getPhone());
                         Toast.makeText(getContext(), "Thông tin đã được thay đổi", Toast.LENGTH_SHORT).show();
                     }
