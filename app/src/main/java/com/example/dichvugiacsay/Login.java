@@ -29,6 +29,7 @@ public class Login extends AppCompatActivity {
     private CheckBox chk;
     UserDAO userDAO;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
