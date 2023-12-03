@@ -19,7 +19,7 @@
             android:src="@drawable/anhdichvu1"
             android:layout_weight="3"
             android:id="@+id/listdichvuimg"
-            android:padding="5dp"
+            android:padding="10dp"
             android:layout_height="120dp"/>
         <LinearLayout
             android:layout_width="0dp"
