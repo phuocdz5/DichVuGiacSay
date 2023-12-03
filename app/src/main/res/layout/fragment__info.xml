@@ -79,7 +79,7 @@
                 android:layout_marginTop="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtUserName"
+                    android:id="@+id/edtUserNameInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nhập họ và tên"
@@ -97,7 +97,7 @@
                 android:layout_marginBottom="20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtPhoneNumber"
+                    android:id="@+id/edtPhoneNumberInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nhập số điện thoại"
@@ -115,7 +115,7 @@
                 android:layout_marginBottom="20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtEmail"
+                    android:id="@+id/edtEmailInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nhập email"
@@ -133,7 +133,7 @@
                 android:layout_marginBottom="20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtAddress"
+                    android:id="@+id/edtAddressInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nhập địa chỉ"
@@ -142,7 +142,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSave"
+            android:id="@+id/btnSaveInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
