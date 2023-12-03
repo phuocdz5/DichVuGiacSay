@@ -43,7 +43,7 @@ public class FragmentStore extends Fragment {
     private ServiceAdapter serviceAdapter;
     private ViewPager2 viewPager2;
     private RecyclerView recyclerView;
-    private Button btnBack,btnCart;
+    private Button btnBack;
 
     private CartDAO cartDAO;
 
@@ -59,7 +59,6 @@ public class FragmentStore extends Fragment {
         name = view.findViewById(R.id.storeName);
         address = view.findViewById(R.id.storeAddress);
         btnBack = view.findViewById(R.id.btnBackCuaHang1);
-        btnCart = view.findViewById(R.id.btnCart1);
         recyclerView = view.findViewById(R.id.recyclerViewService);
         LinearLayoutManager l = new LinearLayoutManager(getActivity());
         l.setOrientation(RecyclerView.VERTICAL);
