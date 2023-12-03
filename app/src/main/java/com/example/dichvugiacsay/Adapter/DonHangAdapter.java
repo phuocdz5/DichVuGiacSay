@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.ViewHolder> {
 
-    private final ArrayList<DonHang> arr;
-    private final Context context;
+    private ArrayList<DonHang> arr;
+    private Context context;
 
     public DonHangAdapter(ArrayList<DonHang> arr, Context context) {
         this.arr = arr;
@@ -27,13 +27,13 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.ViewHold
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DonHangAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_xacnhan_inner, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DonHangAdapter.ViewHolder holder, int position) {
         DonHang donHang = arr.get(position);
         if (donHang == null) return;
         int id = context.getResources().getIdentifier("drawable/"+donHang.getImg() , null , context.getPackageName());
@@ -51,9 +51,9 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.ViewHold
         return arr.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final ImageView img;
-        private final TextView name, description, quantity, price;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private ImageView img;
+        private TextView name, description, quantity, price;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

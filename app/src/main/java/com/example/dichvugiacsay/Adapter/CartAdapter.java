@@ -14,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dichvugiacsay.Model.Cart;
+import com.example.dichvugiacsay.Model.User;
 import com.example.dichvugiacsay.R;
+import com.example.dichvugiacsay.data.CartDAO;
 
 import java.util.ArrayList;
 
@@ -24,15 +26,18 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     CartITF  sub, plus, sumprice;
     private Context context;
+    private CartDAO cartDAO;
+    private User user;
 
-
-    public CartAdapter(Context context , ArrayList<Cart> arr,CartITF sub, CartITF plus, CartITF sumprice) {
+    public CartAdapter(Context context ,User user, ArrayList<Cart> arr,CartITF sub, CartITF plus, CartITF sumprice) {
         this.context = context;
+        this.user = user;
         this.arr = arr;
         this.sub = sub;
         this.plus = plus;
         this.sumprice = sumprice;
         arrpprice = new ArrayList<>();
+        cartDAO = new CartDAO(context);
     }
 
     @NonNull
@@ -60,16 +65,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     if (b){
                         arrpprice.add(cart);
                         sumprice.xuli(setPirce(arrpprice));
+
 //                    Log.e("atuan list ", arrpprice.toString());
                     }else{
                         for (int i = 0; i < arrpprice.size(); i++) {
                             if (arrpprice.get(i).getIdService() == cart.getIdService()){
                                 arrpprice.remove(i);
                                 sumprice.xuli(setPirce(arrpprice));
+
                             }
                         }
                         notifyDataSetChanged();
                     }
+                    plus.xuli(arrpprice);
                 }
             });
             holder.sub.setOnClickListener(new View.OnClickListener() {
@@ -81,16 +89,29 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                             arrpprice.get(i).setQuantity(cart.getQuantity());
                             if (cart.getQuantity() == 0){
                                 arrpprice.remove(i);
+
                             }
                         }
                     }
-                    if (cart.getQuantity() < 1){
+                    if (cart.getQuantity() != 0){
+                        cartDAO.update(cart.getIdCart()+"", cart.getQuantity()+"");
+                        Log.e("delete cart", "da delete cart");
+                        Log.e("delete so luong", cart.getIdService()+"====="+ cart.getQuantity()+"");
+                    }
+                    if (cart.getQuantity() == 0){
                         arr.remove(cart);
+                        cartDAO.delete(user.getId(), cart.getIdService()+"", new CartDAO.CartITF() {
+                            @Override
+                            public void xuli(Object obj) {
+
+                            }
+                        });
                         notifyDataSetChanged();
                     }
                     sumprice.xuli(setPirce(arrpprice));
                     holder.quantity.setText(cart.getQuantity()+"");
                     holder.price.setText((cart.getQuantity() * cart.getPriceService()) +"");
+                    plus.xuli(arrpprice);
                 }
             });
             holder.plus.setOnClickListener(new View.OnClickListener() {
@@ -102,12 +123,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                         if (arrpprice.get(i).getIdService() == cart.getIdService()){
                             arrpprice.get(i).setQuantity(cart.getQuantity());
 
+
                         }
                     }
+                    cartDAO.update(cart.getIdCart()+"", cart.getQuantity()+"");
+                    Log.e("delete so luong", cart.getIdService()+"====="+ cart.getQuantity()+"");
+
+                    Log.e("delete cart", "da update cart");
                     sumprice.xuli(setPirce(arrpprice));
                     holder.quantity.setText(cart.getQuantity()+"");
                     holder.price.setText((cart.getQuantity() * cart.getPriceService()) +"");
-
+                    plus.xuli(arrpprice);
                 }
             });
         }catch (Exception e){

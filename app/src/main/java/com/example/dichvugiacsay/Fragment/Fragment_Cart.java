@@ -24,13 +24,12 @@ import java.util.ArrayList;
 
 public class Fragment_Cart extends Fragment {
     private RecyclerView rcv;
-    private Button  btndat;
+    private Button btndat;
     private CartAdapter cartAdapter;
     private CartDAO cartDAO;
     private TextView txtprice;
     private ArrayList<Cart> arr;
     private MainActivity mainActivity;
-
     private ArrayList<Cart> arrIdItem;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +39,7 @@ public class Fragment_Cart extends Fragment {
         cartDAO = new CartDAO(getContext());
         arrIdItem = new ArrayList<>();
         rcv = view.findViewById(R.id.cartFragment_rcv);
-        btndat = view.findViewById(R.id.cartFragment_book);
+        btndat = view.findViewById(R.id.cartFragment_datdichvu);
         txtprice = view.findViewById(R.id.cartFramgent_price);
         LinearLayoutManager l = new LinearLayoutManager(getContext());
         l.setOrientation(RecyclerView.VERTICAL);
@@ -56,40 +55,21 @@ public class Fragment_Cart extends Fragment {
         return view;
     }
     private void setData(){
-        ArrayList<Cart> arrprice= new ArrayList<>();
+        ArrayList<Cart> arrprice = new ArrayList<>();
         cartDAO.readinner(mainActivity.getUser().getUsername(), new CartDAO.CartITF() {
             @Override
             public void xuli(Object obj) {
                 arr = (ArrayList<Cart>) obj;
-                cartAdapter = new CartAdapter(getContext(), arr, new CartAdapter.CartITF() {
+                cartAdapter = new CartAdapter(getContext(),mainActivity.getUser(), arr, new CartAdapter.CartITF() {
                     @Override
                     public void xuli(Object obj) {
-                        //sub
-                        Cart cart = (Cart) obj;
-                        for (int i = 0; i < arrprice.size(); i++) {
-                            if (arrprice.get(i).getIdService() == cart.getIdService()) {
-                                arrprice.get(i).setQuantity(cart.getQuantity());
-                                if (arrprice.get(i).getQuantity() < 1) {
-                                    arrprice.remove(i);
-                                    break;
-                                }
-                            }
-                        }
-                        setPirce(arrprice);
                     }
                 }, new CartAdapter.CartITF() {
                     @Override
                     public void xuli(Object obj) {
                         // plus
-                        Cart cart = (Cart) obj;
-                        for (int i = 0; i < arrprice.size(); i++) {
-                            if (arrprice.get(i).getIdService() == cart.getIdService()) {
-                                arrprice.get(i).setQuantity(cart.getQuantity());
-                            } else {
-                                arrprice.add(cart);
-                            }
-                        }
-                        setPirce(arrprice);
+                        arrIdItem = (ArrayList<Cart>) obj;
+
                     }
                 }, new CartAdapter.CartITF() {
                     @Override
@@ -101,15 +81,8 @@ public class Fragment_Cart extends Fragment {
                 rcv.setAdapter(cartAdapter);
             }
         });
-    }
-    private void setPirce(ArrayList<Cart> arr){
-        int sumprice = 0;
-        for (int i = 0; i < arr.size(); i++) {
-            sumprice = arr.get(i).getQuantity() * arr.get(i).getPriceService();
-        }
-        txtprice.setText(sumprice + "VND");
-    }
 
+    }
     private void setBtndat(ArrayList<Cart> cartArrayList){
         if (cartArrayList.size() == 0 || cartArrayList.isEmpty()){
             Toast.makeText(getContext(), "Vui lòng thêm sản phẩm để tiếp tục", Toast.LENGTH_SHORT).show();

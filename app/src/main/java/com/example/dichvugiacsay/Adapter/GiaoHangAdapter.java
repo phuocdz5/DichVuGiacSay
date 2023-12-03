@@ -35,13 +35,13 @@ public class GiaoHangAdapter extends RecyclerView.Adapter<GiaoHangAdapter.ViewHo
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GiaoHangAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_giaohang, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GiaoHangAdapter.ViewHolder holder, int position) {
         DonHangOuter donHangOuter = donHangArrayList.get(position);
         holder.id.setText("#"+ donHangOuter.getId());
         holder.date.setText(donHangOuter.getDate());
@@ -60,7 +60,7 @@ public class GiaoHangAdapter extends RecyclerView.Adapter<GiaoHangAdapter.ViewHo
         private final TextView id;
         private final TextView date;
         private final TextView price;
-        private final RecyclerView rcv;
+        private RecyclerView rcv;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             id = itemView.findViewById(R.id.giaohang_outer_id);
@@ -75,7 +75,6 @@ public class GiaoHangAdapter extends RecyclerView.Adapter<GiaoHangAdapter.ViewHo
             public void xuli(Object object) {
                 int sumprice = 0;
                 arr = (ArrayList<DonHang>) object;
-                Log.e("atuan id", arr.toString());
                 for (int i = 0; i < arr.size(); i++) {
                     sumprice += (arr.get(i).getPrice() * arr.get(i).getQuantitty());
                 }

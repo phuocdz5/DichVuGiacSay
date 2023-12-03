@@ -35,13 +35,13 @@ public class XacNhanOuterAdapter extends RecyclerView.Adapter<XacNhanOuterAdapte
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public XacNhanOuterAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_xacnhan_outer, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull XacNhanOuterAdapter.ViewHolder holder, int position) {
         DonHangOuter donHangOuter = outerArrayList.get(position);
         if (donHangOuter == null) return;
         setDataInner(holder.price, donHangOuter.getId(), holder.rcv, Integer.parseInt(donHangOuter.getShip()));

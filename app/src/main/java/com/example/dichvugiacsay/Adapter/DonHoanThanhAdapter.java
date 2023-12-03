@@ -40,13 +40,13 @@ public class DonHoanThanhAdapter extends RecyclerView.Adapter<DonHoanThanhAdapte
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DonHoanThanhAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_hoanthanh, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DonHoanThanhAdapter.ViewHolder holder, int position) {
         DonHangOuter donHangOuter = donHangArrayList.get(position);
         holder.id.setText(donHangOuter.getId());
         holder.date.setText(donHangOuter.getDate());
