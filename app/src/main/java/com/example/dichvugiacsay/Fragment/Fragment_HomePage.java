@@ -86,11 +86,13 @@ public class Fragment_HomePage extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView1 = view.findViewById(R.id.recyclerView1);
         recyclerView2 = view.findViewById(R.id.recyclerView2);
+        mainActivity = (MainActivity) getActivity();
 
         // set các thuộc tính viewPager2
         viewPager2.setOffscreenPageLimit(3);
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
+        user = mainActivity.getUser();
 
         // Thực hiện chuyển động cho hình ảnh
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
@@ -174,7 +176,6 @@ public class Fragment_HomePage extends Fragment {
             @Override
             public void xuli(Object obj) {
                 ArrayList<Store > arr = (ArrayList<Store>) obj;
-//                Log.e("atuan", arr.get(0).toString());
 
                 storeAdapter.setData(arr);
                 recyclerView2.setAdapter(storeAdapter);
