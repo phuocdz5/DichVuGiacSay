@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -126,14 +130,22 @@ public class ServiceDetailActivity extends AppCompatActivity {
     }
 
     private void setDanhGiaDialog(){
-        Dialog dialog = new Dialog(ServiceDetailActivity.this);
-        dialog.setContentView(R.layout.danhgia_dialog);
-        RatingBar ratingBar = dialog.findViewById(R.id.danhgiadialog_ratingbar);
-        ratingBar.setIsIndicator(true);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.danhgia_dialog, null);
+        builder.setView(view);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.setCancelable(false);
+        RatingBar ratingBar = view.findViewById(R.id.danhgiadialog_ratingbar);
+        if (ratingBar != null) {
+            ratingBar.setIsIndicator(true);
+        }
         ratingBar.setRating(totalpoint);
-        TextView tongsao = dialog.findViewById(R.id.danhgiadialog_tongsao);
-        RecyclerView rcv = dialog.findViewById(R.id.danhgiadialog_rcv);
-        Button btndong  = dialog.findViewById(R.id.danhgiadialog_dong);
+        TextView tongsao = view.findViewById(R.id.danhgiadialog_tongsao);
+        RecyclerView rcv = view.findViewById(R.id.danhgiadialog_rcv);
+        Button btndong  = view.findViewById(R.id.danhgiadialog_dong);
         LinearLayoutManager l = new LinearLayoutManager(ServiceDetailActivity.this);
         l.setOrientation(LinearLayoutManager.VERTICAL);
         rcv.setLayoutManager(l);
@@ -149,9 +161,9 @@ public class ServiceDetailActivity extends AppCompatActivity {
         btndong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
+                alertDialog.dismiss();
             }
         });
-        dialog.show();
+        alertDialog.show();
     }
 }
