@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="20dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/orange"
+            android:text="Thay đổi thông tin"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="#FF9228"
+            android:layout_marginHorizontal="15dp"
+            app:hintTextColor="#FF9228">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/updateaddress_name"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:maxLength="50"
+                android:layout_height="wrap_content"
+                android:hint="Họ tên"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_height="wrap_content"
+
+            app:boxStrokeColor="#FF9228"
+            app:hintTextColor="#FF9228">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/updateaddress_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:maxLength="11"
+                android:hint="Số điện thoại"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="#FF9228"
+            app:hintTextColor="#FF9228">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/updateaddress_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:hint="Địa chỉ"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#EDEDED"
+        android:layout_marginTop="15dp"
+        android:id="@+id/updateaddress_delete"
+        android:gravity="center"
+        android:textColor="@color/orange"
+        android:textSize="18sp"
+        android:text="Xóa thông tin"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/orange"
+        android:id="@+id/updateaddress_update"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        android:textSize="18sp"
+        android:text="Lưu thông tin"/>
+</LinearLayout>

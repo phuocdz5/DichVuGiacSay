@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.dichvugiacsay.Model.Address;
 import com.example.dichvugiacsay.Model.DonHang;
 import com.example.dichvugiacsay.Model.DonHangOuter;
 
@@ -160,5 +161,66 @@ public class DonHangDAO {
             requestQueue.add(stringRequest);
         }
 
+    }
+
+    public void insert(String iddonhang, String idkhachhang, String date, String tongtien, Address address, DonHangITF xuli){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, InsertURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                xuli.xuli(null);
+                Log.e("donhang", "insert thanh cong 174" );
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error isert donhang " , error.getMessage());
+
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("idDonHang", iddonhang);
+                map.put("idkhachhang", idkhachhang);
+                map.put("ngaydathang", date);
+                map.put("tongtien", tongtien);
+                map.put("hoten", address.getName());
+                map.put("sdt", address.getPhone());
+                map.put("diachi", address.getAddress());
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+    public void insertCTDH(String iddonhang, String iddichvu, String soluong, DonHangITF xuli){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, InsertCTDHURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                xuli.xuli(null);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error isert donhang " , error.getMessage());
+
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("idDonHang", iddonhang);
+                map.put("idDichVu", iddichvu);
+                map.put("soLuong", soluong);
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 }
