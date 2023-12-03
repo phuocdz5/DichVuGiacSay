@@ -1,15 +1,22 @@
 package com.example.dichvugiacsay.Model;
 
 public class User_CardView {
-    private int resourceImage;
+    private int id, resourceImage;
     private String name;
 
-    public User_CardView() {
-    }
 
-    public User_CardView(int resourceImage, String name) {
+    public User_CardView(int id, int resourceImage, String name) {
+        this.id = id;
         this.resourceImage = resourceImage;
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getResourceImage() {

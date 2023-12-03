@@ -61,7 +61,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreHolder>
         holder.txtLocation.setText(store.getAddress());
         holder.txtNumber.setText("5");
         holder.txtNumber1.setText("1.1 km");
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -2,6 +2,7 @@ package com.example.dichvugiacsay.Fragment;
 
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,16 +23,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.dichvugiacsay.Adapter.Slider_Image_Adapter;
 import com.example.dichvugiacsay.Adapter.StoreAdapter;
 import com.example.dichvugiacsay.Adapter.TipsAdapter;
 import com.example.dichvugiacsay.Adapter.User_CardViewAdapter;
+import com.example.dichvugiacsay.MainActivity;
 import com.example.dichvugiacsay.Model.Slider_Image;
 import com.example.dichvugiacsay.Model.Store;
 import com.example.dichvugiacsay.Model.Tips;
+import com.example.dichvugiacsay.Model.User;
 import com.example.dichvugiacsay.Model.User_CardView;
 import com.example.dichvugiacsay.R;
+import com.example.dichvugiacsay.ServiceDetailActivity;
 import com.example.dichvugiacsay.data.StoreDAO;
 
 import java.util.ArrayList;
@@ -55,6 +60,10 @@ public class Fragment_HomePage extends Fragment {
     private final Handler handler = new Handler(Looper.getMainLooper());
     private StoreDAO storeDAO;
 
+    private MainActivity mainActivity;
+
+    private User user;
+
     private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -77,11 +86,13 @@ public class Fragment_HomePage extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView1 = view.findViewById(R.id.recyclerView1);
         recyclerView2 = view.findViewById(R.id.recyclerView2);
+        mainActivity = (MainActivity) getActivity();
 
         // set các thuộc tính viewPager2
         viewPager2.setOffscreenPageLimit(3);
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
+        user = mainActivity.getUser();
 
         // Thực hiện chuyển động cho hình ảnh
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
@@ -111,7 +122,21 @@ public class Fragment_HomePage extends Fragment {
             }
         });
 
-        userCartViewAdapter = new User_CardViewAdapter(getContext());
+
+
+        userCartViewAdapter = new User_CardViewAdapter(getContext(), new User_CardViewAdapter.User_CardViewITF() {
+            @Override
+            public void xuli(int pos) {
+                if (pos == 6){
+                    Toast.makeText(mainActivity, "Đang phát triên thêm dịch vụ", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent i = new Intent(getContext(), ServiceDetailActivity.class);
+                    i.putExtra("id", pos);
+                    i.putExtra("user",user);
+                    startActivity(i);
+                }
+            }
+        });
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -151,7 +176,6 @@ public class Fragment_HomePage extends Fragment {
             @Override
             public void xuli(Object obj) {
                 ArrayList<Store > arr = (ArrayList<Store>) obj;
-//                Log.e("atuan", arr.get(0).toString());
 
                 storeAdapter.setData(arr);
                 recyclerView2.setAdapter(storeAdapter);
@@ -175,12 +199,12 @@ public class Fragment_HomePage extends Fragment {
 
     private List<User_CardView> getListUserCartView(){
         List<User_CardView> list = new ArrayList<>();
-        list.add(new User_CardView(R.drawable.icon_dichvu1, "Giặt ủi"));
-        list.add(new User_CardView(R.drawable.icon_dichvu, "Giặt hấp"));
-        list.add(new User_CardView(R.drawable.icon_dichvu2, "Giặt sấy"));
-        list.add(new User_CardView(R.drawable.icon_dichvu3, "Giặt giày"));
-        list.add(new User_CardView(R.drawable.icon_dichvu4, "Giặt vest"));
-        list.add(new User_CardView(R.drawable.icon_dichvu5, "Khác"));
+        list.add(new User_CardView(1, R.drawable.icon_dichvu1, "Giặt giày"));
+        list.add(new User_CardView(2 ,R.drawable.icon_dichvu2, "Giặt sấy"));
+        list.add(new User_CardView(3, R.drawable.icon_dichvu, "Giặt ủi"));
+        list.add(new User_CardView(4, R.drawable.icon_dichvu3, "Giặt hấp"));
+        list.add(new User_CardView(5, R.drawable.icon_dichvu4, "Giặt vest"));
+        list.add(new User_CardView(6, R.drawable.icon_dichvu5, "Khác"));
 
         return list;
     }

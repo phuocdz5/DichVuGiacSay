@@ -40,17 +40,18 @@ public class OrderDetailDAO {
                 OrderDetail orderDetail;
                 try {
                 JSONArray jsonArray = new JSONArray(response);
-                for (int i = 0; i < jsonArray.length(); i++) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
 //                        id, int idOrder, int idService, int quantity,  int price, int status
                         JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                         arr.add(new OrderDetail(
                                 jsonObject.getString("name"),
-                                jsonObject.getInt("idOrder"),
-                                jsonObject.getInt("quantity"),
-                                jsonObject.getInt("price"),
+                                jsonObject.getString("idOrder"),
+                                jsonObject.getString("quantity"),
+                                jsonObject.getString("price"),
                                 jsonObject.getString("status"),
-                                jsonObject.getInt("idStore"),
-                                jsonObject.getInt("idService")));
+                                jsonObject.getString("idStore"),
+                                jsonObject.getString("idService"),
+                                jsonObject.getString("img")));
                     }
                     xuli.xuli(arr);
 

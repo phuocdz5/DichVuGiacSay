@@ -3,18 +3,28 @@ package com.example.dichvugiacsay.Model;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    private String id;
     private String name;
     private String address;
     private String email;
     private String phone;
     private String username;
 
-    public User(String name, String address, String email, String phone, String username) {
+    public User(String id, String name, String address, String email, String phone, String username) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.email = email;
         this.phone = phone;
         this.username = username;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

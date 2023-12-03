@@ -107,13 +107,13 @@ public class StoreDAO {
                         JSONObject jsonObject = (JSONObject) response.get(i);
                         arr.add(new Service(
                                 jsonObject.getInt("id"),
-                                jsonObject.getInt("idGenre"),
                                 jsonObject.getString("name"),
                                 jsonObject.getString("description"),
-                                jsonObject.getString("price")
+                                jsonObject.getString("price"),
+                                jsonObject.getString("img")
 
                         ));
-                     xuLiStore.xuli(arr);
+                        xuLiStore.xuli(arr);
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }

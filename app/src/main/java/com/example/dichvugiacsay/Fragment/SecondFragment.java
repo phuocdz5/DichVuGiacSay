@@ -1,4 +1,4 @@
-package com.example.dichvugiacsay.Model;
+package com.example.dichvugiacsay.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

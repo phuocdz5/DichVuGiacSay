@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ServiceDetailActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Thông tin dịch vụ"
+                    android:textSize="20sp"
+                    android:textColor="@color/orange"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_arrow_back_24"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+
+                    android:id="@+id/servicedetail_back"/>
+
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/giatgiayimg"
+                android:layout_marginTop="20dp"
+                android:id="@+id/servicedetail_img"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:weightSum="10"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="giat giay"
+                    android:layout_weight="9"
+                    android:textSize="19sp"
+                    android:textColor="@color/orange"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/servicedetail_name"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/servicedetail_sao"
+                    android:text="4"
+                    android:textSize="17sp"
+                    android:layout_gravity="center"
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/star"
+                    android:textSize="17sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="giat giay"
+                android:textSize="19sp"
+                android:textColor="#F44336"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/servicedetail_price"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="giat giay"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/servicedetail_description"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:paddingStart="35dp"
+                android:paddingEnd="35dp"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:drawableStart="@drawable/baseline_check_24"
+                    android:text="Giặt bằng nước giặt nhập khẩu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:drawableStart="@drawable/baseline_check_24"
+
+                    android:text="Giặt bằng công nghệ Nhật." />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:paddingStart="35dp"
+                android:paddingEnd="35dp"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:drawableStart="@drawable/baseline_check_24"
+
+                    android:text="  Tiết kiệm thòi gian hơn khi giặt" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:layout_marginStart="5dp"
+                    android:drawableStart="@drawable/baseline_check_24"
+                    android:text="  Giao hàng tận nơi và tận tình." />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="80dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="3dp"
+                    android:drawableStart="@drawable/baseline_check_24"
+
+                    android:text=" 2.4k đã đặt" />
+
+
+                <Button
+                    android:id="@+id/servicedetail_danhgia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/baseline_draw_24"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/resource_background_button"
+                    android:text="đánh giá"
+                    />
+                <Button
+                    android:id="@+id/servicedetail_addcart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:background="@drawable/resource_background_button"
+                    android:text="Thêm vào giỏ hàng" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -5,10 +5,7 @@
             android:icon="@drawable/trangchu"/>
         <item android:id="@+id/don_hang"
             android:title="@string/yeu_thich"
-            android:icon="@drawable/yeuthich"/>
-        <item android:id="@+id/lich_su"
-            android:title="@string/lich_su"
-            android:icon="@drawable/lichsu"/>
+            android:icon="@drawable/baseline_shopping_cart"/>
         <item android:id="@+id/tai_khoan"
             android:title="@string/tai_khoan"
             android:icon="@drawable/taikhoan"/>

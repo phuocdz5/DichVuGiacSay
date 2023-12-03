@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dichvugiacsay.Model.User_CardView;
@@ -19,19 +20,12 @@ public class User_CardViewAdapter extends RecyclerView.Adapter<User_CardViewAdap
 
     private Context context;
     private List<User_CardView> mList;
+    public interface User_CardViewITF{void xuli(int pos);}
 
-    private User_CardViewAdapter.UserListener UserListener;
-
-    public interface UserListener{
-        void onItemClick( int pos);
-    }
-
-    public void setListener(User_CardViewAdapter.UserListener UserListener) {
-        this.UserListener = UserListener;
-    }
-
-    public User_CardViewAdapter(Context context) {
+    User_CardViewITF userCardViewITF;
+    public User_CardViewAdapter(Context context, User_CardViewITF userCardViewITF) {
         this.context = context;
+        this.userCardViewITF = userCardViewITF;
     }
 
     public void setData(List<User_CardView> list) {
@@ -52,32 +46,31 @@ public class User_CardViewAdapter extends RecyclerView.Adapter<User_CardViewAdap
         if(userCartView == null) {
             return;
         }
-        holder.imgUser.setImageResource(userCartView.getResourceImage());
-        holder.txtName.setText(userCartView.getName());
-        holder.itemView.setOnClickListener(v->{
-            int adapterPosition = holder.getAdapterPosition();
-            if (adapterPosition != RecyclerView.NO_POSITION && UserListener != null) {
-                UserListener.onItemClick(adapterPosition);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userCardViewITF.xuli(userCartView.getId());
             }
         });
+        holder.imgUser.setImageResource(userCartView.getResourceImage());
+        holder.txtName.setText(userCartView.getName());
     }
 
     @Override
     public int getItemCount() {
-        if(mList != null) {
-            return mList.size();
-        }
-        return 0;
+        return mList.size();
+
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView imgUser;
         private TextView txtName;
+        private CardView cardView;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            cardView = itemView.findViewById(R.id.item_cardviewlayout);
             imgUser = itemView.findViewById(R.id.imgCartView);
             txtName = itemView.findViewById(R.id.textViewName);
 

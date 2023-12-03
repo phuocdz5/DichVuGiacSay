@@ -3,15 +3,23 @@ package com.example.dichvugiacsay.Model;
 import java.io.Serializable;
 
 public class Service implements Serializable {
-    private int id, idGenre;
-    private String name, description, price;
+    private int id;
+    private String name, description, price, img;
 
-    public Service(int id, int idGenre, String name, String description, String price) {
+    public Service(int id, String name, String description, String price, String img) {
         this.id = id;
-        this.idGenre = idGenre;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public int getId() {
@@ -22,13 +30,7 @@ public class Service implements Serializable {
         this.id = id;
     }
 
-    public int getIdGenre() {
-        return idGenre;
-    }
 
-    public void setIdGenre(int idGenre) {
-        this.idGenre = idGenre;
-    }
 
     public String getName() {
         return name;
@@ -58,7 +60,6 @@ public class Service implements Serializable {
     public String toString() {
         return "Service{" +
                 "id=" + id +
-                ", idGenre=" + idGenre +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price='" + price + '\'' +
