@@ -66,11 +66,11 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
         ImageView add, img;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.ServiceName);
-            price = itemView.findViewById(R.id.ServicePrice);
-            description = itemView.findViewById(R.id.ServiceDescription);
-            add = itemView.findViewById(R.id.ServiceAdd);
-            img = itemView.findViewById(R.id.listdichvuimg);
+            name = itemView.findViewById(R.id.titleDichVu);
+            price = itemView.findViewById(R.id.priceDichVu);
+            description = itemView.findViewById(R.id.descDichVu);
+            add = itemView.findViewById(R.id.addDichVu);
+            img = itemView.findViewById(R.id.imgDichVu);
         }
     }
 
