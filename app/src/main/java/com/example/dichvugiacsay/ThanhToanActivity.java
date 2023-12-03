@@ -31,8 +31,8 @@ public class ThanhToanActivity extends AppCompatActivity {
     private ThanhToanAdapter thanhToanAdapter;
     private RecyclerView rcv;
     private LinearLayoutManager l;
-    private TextView txtdate, txttienhang, txttongtienhang, txttongtienhangbot, txtname, txtaddress;
-    private ImageView back;
+    private TextView txtdate, txttienhang, txttongtienhang, txtname, txtaddress;
+    private Button back;
     private Button btndathang;
     private LinearLayout linearLayout;
     private ArrayList<Cart> cartArrayList;
@@ -67,7 +67,6 @@ public class ThanhToanActivity extends AppCompatActivity {
         txtdate = findViewById(R.id.thanhtoan_date);
         txttienhang = findViewById(R.id.thanhtoan_tienhang);
         txttongtienhang = findViewById(R.id.thanhtoan_tongtienhang);
-        txttongtienhangbot = findViewById(R.id.thanhtoan_tongtienhangbot);
         txtname = findViewById(R.id.thanhtoan_name_phone);
         txtaddress = findViewById(R.id.thanhtoan_address);
         btndathang = findViewById(R.id.thanhtoan_btndathang);
@@ -107,7 +106,6 @@ public class ThanhToanActivity extends AppCompatActivity {
         String tongtienhangformat = numberFormat.format(tienhangkship+15000);
         txttongtienhang.setText(tongtienhangformat);
         txttienhang.setText(tienhangkshipdinhdang);
-        txttongtienhangbot.setText(tongtienhangformat);
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
