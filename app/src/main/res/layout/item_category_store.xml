@@ -15,7 +15,6 @@
         android:background="@color/white"
         android:orientation="horizontal">
 
-
         <ImageView
             android:id="@+id/imgStore"
             android:layout_width="100dp"
