@@ -1,7 +1,6 @@
 package com.example.dichvugiacsay.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,42 +12,53 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dichvugiacsay.Model.DonHang;
 import com.example.dichvugiacsay.Model.DonHangOuter;
+import com.example.dichvugiacsay.Model.User;
 import com.example.dichvugiacsay.R;
+import com.example.dichvugiacsay.data.CartDAO;
 import com.example.dichvugiacsay.data.DonHangDAO;
 
 import java.util.ArrayList;
 
-public class GiaoHangAdapter extends RecyclerView.Adapter<GiaoHangAdapter.ViewHolder> {
-    private final ArrayList<DonHangOuter> donHangArrayList;
-    private final Context context;
-    private final DonHangDAO donHangDAO;
-    private LinearLayoutManager l;
-    private DonHangAdapter donHangAdapter;
-    private ArrayList<DonHang> arr;
+public class DonHoanThanhAdapter extends RecyclerView.Adapter<DonHoanThanhAdapter.ViewHolder> {
 
-    public GiaoHangAdapter(ArrayList<DonHangOuter> donHangArrayList, Context context) {
+    ArrayList<DonHangOuter> donHangArrayList;
+    Context context;
+    CartDAO cartDAO;
+    User user;
+    DonHangDAO donHangDAO;
+    private ArrayList<DonHang> arr;
+    private DonHangAdapter donHangAdapter;
+
+
+    public DonHoanThanhAdapter(User user, ArrayList<DonHangOuter> donHangArrayList, Context context) {
+        this.user = user;
         this.donHangArrayList = donHangArrayList;
         this.context = context;
-
+        cartDAO = new CartDAO(context);
         donHangDAO = new DonHangDAO(context);
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_giaohang, parent, false);
-        return new ViewHolder(v);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_hoanthanh, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DonHangOuter donHangOuter = donHangArrayList.get(position);
-        holder.id.setText("#"+ donHangOuter.getId());
+        holder.id.setText(donHangOuter.getId());
         holder.date.setText(donHangOuter.getDate());
-        l = new LinearLayoutManager(context);
+        LinearLayoutManager l = new LinearLayoutManager(context);
         l.setOrientation(LinearLayoutManager.VERTICAL);
         holder.rcv.setLayoutManager(l);
-        setData(holder.rcv, donHangOuter.getId(), holder.price, Integer.parseInt(donHangOuter.getShip()));
+        cartDAO.readinner(user.getUsername(), new CartDAO.CartITF() {
+            @Override
+            public void xuli(Object obj) {
+                setData(holder.rcv, donHangOuter.getId(),holder.price );
+            }
+        });
     }
 
     @Override
@@ -56,30 +66,28 @@ public class GiaoHangAdapter extends RecyclerView.Adapter<GiaoHangAdapter.ViewHo
         return donHangArrayList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView id;
-        private final TextView date;
-        private final TextView price;
-        private final RecyclerView rcv;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView id, date, price;
+        private RecyclerView rcv;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            id = itemView.findViewById(R.id.giaohang_outer_id);
-            date = itemView.findViewById(R.id.giaohang_outer_date);
-            price = itemView.findViewById(R.id.giaohang_outer_price);
-            rcv = itemView.findViewById(R.id.giaohang_outer_rcv);
+            price = itemView.findViewById(R.id.hoanthanh_outer_price);
+            id= itemView.findViewById(R.id.hoanthanh_outer_id);
+            date= itemView.findViewById(R.id.hoanthanh_outer_date);
+            rcv= itemView.findViewById(R.id.hoanthanh_outer_rcv);
+
         }
     }
-    private void setData(RecyclerView rcv, String id, TextView txt, int ship){
+    private void setData(RecyclerView rcv, String id, TextView txt){
         donHangDAO.getDonHangInner(id, new DonHangDAO.DonHangITF() {
             @Override
             public void xuli(Object object) {
                 int sumprice = 0;
                 arr = (ArrayList<DonHang>) object;
-                Log.e("atuan id", arr.toString());
                 for (int i = 0; i < arr.size(); i++) {
                     sumprice += (arr.get(i).getPrice() * arr.get(i).getQuantitty());
                 }
-                txt.setText("Tổng tiền: "+ (sumprice + ship) +"đ");
+                txt.setText("Tổng tiền: "+ (sumprice + 15000) +"đ");
                 donHangAdapter = new DonHangAdapter(arr, context);
                 rcv.setAdapter(donHangAdapter);
             }

@@ -84,7 +84,7 @@ public class XacNhanOuterAdapter extends RecyclerView.Adapter<XacNhanOuterAdapte
     }
 
     private void setDataInner(TextView price, String id , RecyclerView rcv, int ship){
-        donHangDAO.getDonHang(id, new DonHangDAO.DonHangITF() {
+        donHangDAO.getDonHangInner(id, new DonHangDAO.DonHangITF() {
             @Override
             public void xuli(Object object) {
                 int tongtienhang = 0;

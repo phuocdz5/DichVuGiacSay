@@ -38,7 +38,7 @@ public class DonHangDAO {
     public DonHangDAO(Context context) {
         this.context = context;
     }
-    public void getDonHang(String iddonhang, DonHangITF xuli){
+    public void getDonHangInner(String iddonhang, DonHangITF xuli){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, DonhangInnerURL, new Response.Listener<String>() {
             @Override
@@ -57,6 +57,7 @@ public class DonHangDAO {
                                 jsonObject.getString("address")
                         ));
                     }
+                    Log.e("atuan arr", arrayList.toString());
                     xuli.xuli(arrayList);
                 }catch (Exception e){
                     Log.e("error xacnhan " , e.getMessage());
@@ -84,6 +85,43 @@ public class DonHangDAO {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, readOutterURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                ArrayList<DonHangOuter> arrayList = new ArrayList<>();
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                        arrayList.add(new DonHangOuter(
+                                jsonObject.getString("id"),
+                                jsonObject.getString("date"),
+                                jsonObject.getString("ship")
+                        ));
+                    }
+                    xuli.xuli(arrayList);
+                    Log.e("atuan", arrayList.toString());
+                } catch (Exception e) {
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("username", username);
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+    public void getOutter(String username , CartDAO.CartITF xuli, String str){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, hoanthanhOutterURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 ArrayList<DonHangOuter> arrayList = new ArrayList<>();
@@ -139,7 +177,7 @@ public class DonHangDAO {
                             ));
                         }
                         xuli.xuli(arrayList);
-                        Log.e("atuan", arrayList.toString());
+                        Log.e("arr danggiao 181", arrayList.toString());
                     } catch (Exception e) {
                         Log.e("atuan err don hang 141", e.getMessage());
                     }
