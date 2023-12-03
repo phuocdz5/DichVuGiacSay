@@ -19,7 +19,7 @@ import com.example.dichvugiacsay.data.UserDAO;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class Fragment_Info extends Fragment {
-    private TextView tv_name,phone;
+    private TextView tv_name;
     private TextInputEditText edtName,edtEmail,edtPhone,edtAddress;
 
     private Button btnBack, btnSaveInfo;
@@ -62,7 +62,7 @@ public class Fragment_Info extends Fragment {
                     @Override
                     public void xuli(Object obj) {
                         tv_name.setText(user.getName());
-                        phone.setText(user.getPhone());
+                        edtPhone.setText(user.getPhone());
                         Toast.makeText(getContext(), "Thông tin đã được thay đổi", Toast.LENGTH_SHORT).show();
                     }
                 });
