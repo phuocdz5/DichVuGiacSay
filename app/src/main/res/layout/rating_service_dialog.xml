@@ -1,38 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-    android:layout_height="match_parent">
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:id="@+id/rating_ratingbar"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Nhận xét dịch vụ"
-        />
-    <com.google.android.material.textfield.TextInputLayout
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        android:layout_marginBottom="10dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/rating_comment"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:inputType="text|textMultiLine"
-            android:gravity="top"
-            android:layout_height="150dp"
-            android:maxLines="7" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/orange"
-        android:id="@+id/rating_send"
-        android:textColor="@color/white"
-        android:text="Gửi nhận xét"/>
-</LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@color/orange"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/danhgiadialog_dong"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/muitentrai" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="Đánh Giá Dịch Vụ"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <RatingBar
+            android:id="@+id/rating_ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:secondaryProgressTint="@color/orange"
+            android:progressTint="@color/orange"
+            android:numStars="5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhận xét dịch vụ"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="#FE8B00"
+            app:hintTextColor="#FE8B00"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/rating_comment"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:gravity="top"
+                android:inputType="text|textMultiLine"
+
+                android:maxLines="7" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/rating_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/resource_background_button"
+            android:layout_margin="15dp"
+            android:text="Đánh giá" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

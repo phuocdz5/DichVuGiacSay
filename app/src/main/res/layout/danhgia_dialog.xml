@@ -69,6 +69,8 @@
                     android:layout_height="50dp"
                     android:numStars="5"
                     android:layout_gravity="center"
+                    android:progressTint="@color/orange"
+                    android:secondaryProgressTint="@color/orange"
                     android:id="@+id/danhgiadialog_ratingbar"/>
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
