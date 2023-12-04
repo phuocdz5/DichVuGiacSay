@@ -31,14 +31,14 @@
         android:layout_marginBottom="10dp"
         app:boxStrokeColor="#FF9228"
         app:hintTextColor="#FF9228"
-        app:startIconDrawable="@drawable/baseline_email"
+        app:startIconDrawable="@drawable/baseline_person"
         app:startIconTint="#FF9228">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email" />
+            android:hint="Tên người dùng" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
