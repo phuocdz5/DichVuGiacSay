@@ -11,28 +11,33 @@
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/orange"
-            android:orientation="horizontal">
+            android:layout_marginBottom="15dp"
+            android:background="@color/orange">
+
             <Button
                 android:id="@+id/danhgiadialog_dong"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
                 android:background="@android:color/transparent"
                 android:drawableLeft="@drawable/muitentrai" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:textSize="25sp"
-                android:textColor="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:gravity="center"
-                android:textStyle="bold"
-                android:text="Đánh Giá Dịch Vụ"/>
-
-        </LinearLayout>
+                android:text="Đánh Giá Dịch Vụ"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,6 +74,8 @@
                     android:layout_height="50dp"
                     android:numStars="5"
                     android:layout_gravity="center"
+                    android:progressTint="@color/orange"
+                    android:secondaryProgressTint="@color/orange"
                     android:id="@+id/danhgiadialog_ratingbar"/>
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView

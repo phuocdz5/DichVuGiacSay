@@ -1,6 +1,9 @@
 package com.example.dichvugiacsay.Fragment;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,12 +64,21 @@ public class RatingFragment extends Fragment {
                             @Override
                             public void xuli(Object obj) {
                                 RatingDAO ratingDAO = new RatingDAO(getContext());
-                                Dialog dialog = new Dialog(getContext());
-                                dialog.setContentView(R.layout.rating_service_dialog);
-                                RatingBar ratingBar = dialog.findViewById(R.id.rating_ratingbar);
-                                EditText edtcomment = dialog.findViewById(R.id.rating_comment);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                LayoutInflater inflater = getLayoutInflater();
+                                View view = inflater.inflate(R.layout.rating_service_dialog, null);
+                                builder.setView(view);
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                alertDialog.setCancelable(false);
+                                RatingBar ratingBar = view.findViewById(R.id.rating_ratingbar);
+                                EditText edtcomment = view.findViewById(R.id.rating_comment);
+                                Button btnDong = view.findViewById(R.id.danhgiadialog_dong);
 
-                                Button send = dialog.findViewById(R.id.rating_send);
+                                Button send = view.findViewById(R.id.rating_send);
+                                btnDong.setOnClickListener(v->{
+                                    alertDialog.dismiss();
+                                });
 //                                ratingBar.setIsIndicator(true);
                                 ratingBar.setMax(5);
                                 send.setOnClickListener(new View.OnClickListener() {
@@ -82,14 +94,14 @@ public class RatingFragment extends Fragment {
                                                 @Override
                                                 public void xuli(Object obj) {
                                                     Toast.makeText(getContext(), "Cảm ơn bạn đã nhận xét", Toast.LENGTH_SHORT).show();
-                                                    dialog.dismiss();
+                                                    alertDialog.dismiss();
                                                 }
                                             });
                                         }
                                     }
                                 });
 
-                                dialog.show();
+                                alertDialog.show();
                             }
                         });
                 recyclerView.setAdapter(orderDetailRatingAdapter);

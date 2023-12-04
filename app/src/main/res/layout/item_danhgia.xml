@@ -20,9 +20,11 @@
             android:id="@+id/item_danhgia_username"/>
         <RatingBar
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:numStars="5"
+            android:progressTint="@color/orange"
+            android:secondaryProgressTint="@color/orange"
             android:id="@+id/item_danhgia_star"/>
         <TextView
             android:layout_width="match_parent"
