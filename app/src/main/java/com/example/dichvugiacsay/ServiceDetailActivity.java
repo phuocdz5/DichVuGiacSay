@@ -32,8 +32,8 @@ import java.util.ArrayList;
 public class ServiceDetailActivity extends AppCompatActivity {
 
     private TextView name, description, price, sao;
-    private ImageView img, back;
-    private Button btnaddCart, btndanhgia;
+    private ImageView img;
+    private Button btnaddCart,back, btndanhgia;
     private CartDAO cartDAO;
     private StoreDAO storeDAO;
     private Service service;
