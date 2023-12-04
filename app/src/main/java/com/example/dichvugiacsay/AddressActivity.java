@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -91,13 +95,18 @@ public class AddressActivity extends AppCompatActivity {
         });
     }
     private void setDialogUpdate(Address address1){
-        Dialog dialog = new Dialog(AddressActivity.this);
-        dialog.setContentView(R.layout.activity_update_address);
-        EditText edtname = dialog.findViewById(R.id.updateaddress_name);
-        EditText edtphone = dialog.findViewById(R.id.updateaddress_phone);
-        EditText edtaddress = dialog.findViewById(R.id.updateaddress_address);
-        TextView delete = dialog.findViewById(R.id.updateaddress_delete);
-        TextView update = dialog.findViewById(R.id.updateaddress_update);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.activity_update_address, null);
+        builder.setView(view);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        EditText edtname = view.findViewById(R.id.updateAddress_name);
+        EditText edtphone = view.findViewById(R.id.updateAddress_phone);
+        EditText edtaddress = view.findViewById(R.id.updateAddress_address);
+        TextView delete = view.findViewById(R.id.updateAddress_delete);
+        TextView update = view.findViewById(R.id.updateAddress_update);
         edtname.setText(address1.getName());
         edtphone.setText(address1.getPhone());
         edtaddress.setText(address1.getAddress());
@@ -108,7 +117,7 @@ public class AddressActivity extends AppCompatActivity {
                     @Override
                     public void xuli(Object obj) {
                         setData();
-                        dialog.dismiss();
+                        alertDialog.dismiss();
                     }
                 });
             }
@@ -125,21 +134,26 @@ public class AddressActivity extends AppCompatActivity {
                     @Override
                     public void xuli(Object obj) {
                         setData();
-                        dialog.dismiss();
+                        alertDialog.dismiss();
                     }
                 });
             }
         });
-        dialog.show();
+        alertDialog.show();
     }
 
     private void setDialogADD(){
-        Dialog dialog = new Dialog(AddressActivity.this);
-        dialog.setContentView(R.layout.address_dialog_add);
-        EditText edtname = dialog.findViewById(R.id.addaddress_name);
-        EditText edtphone = dialog.findViewById(R.id.addaddress_phone);
-        EditText edtaddress = dialog.findViewById(R.id.addaddress_address);
-        TextView add = dialog.findViewById(R.id.addaddress_update);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.address_dialog_add, null);
+        builder.setView(view);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        EditText edtname = view.findViewById(R.id.addaddress_name);
+        EditText edtphone = view.findViewById(R.id.addaddress_phone);
+        EditText edtaddress = view.findViewById(R.id.addaddress_address);
+        TextView add = view.findViewById(R.id.addaddress_update);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,13 +173,13 @@ public class AddressActivity extends AppCompatActivity {
                         @Override
                         public void xuli(Object obj) {
                             setData();
-                            dialog.dismiss();
+                            alertDialog.dismiss();
                         }
                     });
                     Toast.makeText(AddressActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        dialog.show();
+        alertDialog.show();
     }
 }

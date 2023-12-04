@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_marginHorizontal="20dp"
+    app:cardCornerRadius="15dp"
     android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
             android:textColor="@color/orange"
-            android:text="Thêm địa chỉ"/>
+            android:text="Thêm Địa Chỉ"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxStrokeColor="#FF9228"
-            android:layout_marginHorizontal="15dp"
-            app:hintTextColor="#FF9228">
+            app:boxStrokeColor="#FE8B00"
+            app:endIconTint="#FE8B00"
+            app:hintTextColor="#FE8B00"
+            app:passwordToggleTint="#FE8B00"
+            android:layout_marginBottom="10dp"
+           >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addaddress_name"
@@ -35,11 +42,12 @@
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-
-            app:boxStrokeColor="#FF9228"
-            app:hintTextColor="#FF9228">
+            app:boxStrokeColor="#FE8B00"
+            app:endIconTint="#FE8B00"
+            app:hintTextColor="#FE8B00"
+            app:passwordToggleTint="#FE8B00">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addaddress_phone"
@@ -51,10 +59,12 @@
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-            app:boxStrokeColor="#FF9228"
-            app:hintTextColor="#FF9228">
+            app:boxStrokeColor="#FE8B00"
+            app:endIconTint="#FE8B00"
+            app:hintTextColor="#FE8B00"
+            app:passwordToggleTint="#FE8B00">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addaddress_address"
@@ -63,16 +73,18 @@
                 android:maxLines="3"
                 android:hint="Địa chỉ"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/resource_background_button"
+            android:id="@+id/addaddress_update"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="15dp"
+            android:textSize="18sp"
+            android:text="Lưu thông tin"/>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/orange"
-        android:id="@+id/addaddress_update"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:layout_marginTop="15dp"
-        android:textSize="18sp"
-        android:text="Lưu thông tin"/>
-</LinearLayout>
+</androidx.cardview.widget.CardView>

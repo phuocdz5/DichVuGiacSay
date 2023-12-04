@@ -12,7 +12,7 @@
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="172dp"
         app:srcCompat="@drawable/sign_up" />
 
     <TextView
@@ -28,7 +28,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         app:boxStrokeColor="#FE8B00"
         app:endIconTint="#FE8B00"
         app:hintTextColor="#FE8B00"
@@ -61,7 +60,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         app:boxStrokeColor="#FE8B00"
         app:hintTextColor="#FE8B00"
         app:startIconDrawable="@drawable/baseline_email"
@@ -80,7 +78,6 @@
         app:boxStrokeColor="#FE8B00"
         app:endIconTint="#FE8B00"
         app:hintTextColor="#FE8B00"
-        android:layout_marginBottom="10dp"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="#FE8B00"
         app:startIconDrawable="@drawable/baseline_lock"
