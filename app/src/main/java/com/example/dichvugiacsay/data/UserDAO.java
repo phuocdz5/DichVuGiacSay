@@ -67,7 +67,7 @@ public class UserDAO {
                             rememberUS.remember();
                             Intent intent = new Intent(context, MainActivity.class);
                             intent.putExtra("user", user);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_NO_HISTORY);
                             context.startActivity(intent);
                         } else {
                             Toast.makeText(context, "Tài khoản mật khẩu không đúng", Toast.LENGTH_SHORT).show();
@@ -231,7 +231,10 @@ public class UserDAO {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-                context.startActivity(new Intent(context,Login.class));
+                Intent intent = new Intent(context, Login.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                context.startActivity(intent);
+
             }
         }, new Response.ErrorListener() {
             @Override
