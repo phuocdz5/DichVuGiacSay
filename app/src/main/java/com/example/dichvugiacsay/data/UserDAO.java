@@ -37,6 +37,7 @@ public class UserDAO {
 
     private String changInfoURL = IP.IP + "/giatsay/userChangInfo.php";
     private String forgotPass = IP.IP + "/giatsay/forgot.php";
+    private String delPass = IP.IP + "/giatsay/deletekhachhang.php";
     private Context context;
     public UserDAO(Context context) {
         this.context = context;
@@ -54,7 +55,7 @@ public class UserDAO {
                         String result = jsonObject.getString("status");
 
                         if (result.equals("success")) {
-                            JSONArray userArray = jsonObject.getJSONArray("users"); // Thay đổi tên khóa thành "user"
+                            JSONArray userArray = jsonObject.getJSONArray("users");
                             JSONObject userObject = userArray.getJSONObject(0);
                             User user = new User(
                                     userObject.getString("id"),
@@ -223,6 +224,30 @@ public class UserDAO {
             Toast.makeText(context, "Không được để trống", Toast.LENGTH_SHORT).show();
             progressDialog.dismiss();
         }
+    }
+    public void deletePassword(String gmail){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, delPass, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+                context.startActivity(new Intent(context,Login.class));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> param = new HashMap<>();
+                param.put("email",gmail);
+                return param;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
     private boolean validateForm(String str){

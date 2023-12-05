@@ -3,9 +3,11 @@ package com.example.dichvugiacsay.Fragment;
 import static com.example.dichvugiacsay.R.id.frameLayoutMain;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,12 +16,14 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dichvugiacsay.Login;
 import com.example.dichvugiacsay.MainActivity;
 import com.example.dichvugiacsay.Model.User;
 import com.example.dichvugiacsay.OrderActivity;
 import com.example.dichvugiacsay.R;
+import com.example.dichvugiacsay.data.UserDAO;
 
 public class Fragment_Account extends Fragment {
     private MainActivity activity;
@@ -41,7 +45,26 @@ public class Fragment_Account extends Fragment {
             User user = activity.getUser();
             tvFullname.setText(user.getName());
             tvSdt.setText(user.getPhone());
+            rlDeleteAccount.setOnClickListener(v->{
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Thông báo");
+                builder.setMessage("Bạn có muốn xoá tài khoản không?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        UserDAO userDAO = new UserDAO(getContext());
+                        userDAO.deletePassword(user.getEmail());
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            });
             rlDonHang.setOnClickListener(v->{
                 Intent i = new Intent(getContext(), OrderActivity.class);
                 i.putExtra("user", user);
