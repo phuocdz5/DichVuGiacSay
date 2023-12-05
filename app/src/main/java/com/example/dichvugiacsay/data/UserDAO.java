@@ -1,5 +1,6 @@
 package com.example.dichvugiacsay.data;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import android.app.AlertDialog;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -34,6 +36,7 @@ public class UserDAO {
     private String changPasswordURL = IP.IP + "/giatsay/changePassword.php";
 
     private String changInfoURL = IP.IP + "/giatsay/userChangInfo.php";
+    private String forgotPass = IP.IP + "/giatsay/forgot.php";
     private Context context;
     public UserDAO(Context context) {
         this.context = context;
@@ -48,21 +51,29 @@ public class UserDAO {
                 public void onResponse(String response) {
                     try {
                         JSONObject jsonObject = new JSONObject(response);
-                        User user = new User(
-                                jsonObject.getString("id"),
-                                jsonObject.getString("name"),
-                                jsonObject.getString("address"),
-                                jsonObject.getString("email"),
-                                jsonObject.getString("phone"),
-                                us);
-                        rememberUS.remember();
-                        Intent intent = new Intent(context, MainActivity.class);
-                        intent.putExtra("user", user);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
+                        String result = jsonObject.getString("status");
+
+                        if (result.equals("success")) {
+                            JSONArray userArray = jsonObject.getJSONArray("users"); // Thay đổi tên khóa thành "user"
+                            JSONObject userObject = userArray.getJSONObject(0);
+                            User user = new User(
+                                    userObject.getString("id"),
+                                    userObject.getString("name"),
+                                    userObject.getString("address"),
+                                    userObject.getString("email"),
+                                    userObject.getString("phone"),
+                                    us);
+                            rememberUS.remember();
+                            Intent intent = new Intent(context, MainActivity.class);
+                            intent.putExtra("user", user);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(intent);
+                        } else {
+                            Toast.makeText(context, "Tài khoản mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                        }
                     } catch (JSONException e) {
-                        Toast.makeText(context, "checklogin err 52", Toast.LENGTH_SHORT).show();
-                        throw new RuntimeException(e);
+                        Toast.makeText(context, "Lỗi xử lý JSON", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
                     }
                 }
 
@@ -98,8 +109,19 @@ public class UserDAO {
         StringRequest stringRequest =new StringRequest(Request.Method.POST, regAccount, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                context.startActivity(new Intent(context ,  Login.class));
-                Toast.makeText(context, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String check = jsonObject.getString("status");
+                    if(check.equals("success")){
+                        context.startActivity(new Intent(context ,  Login.class));
+                        Toast.makeText(context, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(context, "Email đã đăng ký rồi", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -158,6 +180,49 @@ public class UserDAO {
             }
         };
         requestQueue.add(stringRequest);
+    }
+    public void forgotPassword(String email,AlertDialog alertDialog,ProgressDialog progressDialog){
+
+        if(!validateForm(email)){
+            RequestQueue requestQueue = Volley.newRequestQueue(context);
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, forgotPass, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        String mail = jsonObject.getString("mail");
+                        if(mail.equals("send")){
+                            Toast.makeText(context, "Vui lòng kiểm tra gmail của bạn", Toast.LENGTH_SHORT).show();
+                            alertDialog.dismiss();
+                            progressDialog.dismiss();
+                        }if(mail.equals("notmail")){
+                            Toast.makeText(context, "Email chưa được đăng ký", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(context, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }){
+                @Nullable
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    HashMap<String,String> forgotMail = new HashMap<>();
+                    forgotMail.put("email",email);
+                    return forgotMail;
+                }
+            };
+            requestQueue.add(stringRequest);
+        }else {
+            Toast.makeText(context, "Không được để trống", Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss();
+        }
     }
 
     private boolean validateForm(String str){
