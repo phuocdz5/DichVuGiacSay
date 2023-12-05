@@ -3,6 +3,7 @@ package com.example.dichvugiacsay;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -20,7 +21,6 @@ import android.widget.Toast;
 
 import com.example.dichvugiacsay.data.UserDAO;
 import com.example.dichvugiacsay.itf.RememberUS;
-import com.google.android.material.textfield.TextInputEditText;
 
 public class Login extends AppCompatActivity {
     private Button btnLogin;
@@ -28,7 +28,7 @@ public class Login extends AppCompatActivity {
     private EditText edus, edpw;
     private CheckBox chk;
     UserDAO userDAO;
-
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,9 @@ public class Login extends AppCompatActivity {
         chk = findViewById(R.id.chkMiss);
         edus = findViewById(R.id.edtUserName);
         edpw = findViewById(R.id.edtPassword);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Loading...");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         checkUser();
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,10 +81,14 @@ public class Login extends AppCompatActivity {
         alertDialog.setCancelable(false);
         alertDialog.show();
 
-        TextInputEditText edtSendEmail = view.findViewById(R.id.edtSendEmail);
+        EditText edtSendEmail = view.findViewById(R.id.edtSendEmail);
         Button btnSendEmail = view.findViewById(R.id.btnSendEmail);
         Button btnBackToLogin = view.findViewById(R.id.btnBackToLogin);
-
+        btnSendEmail.setOnClickListener(v->{
+            progressDialog.show();
+            userDAO = new UserDAO(getApplicationContext());
+            userDAO.forgotPassword(edtSendEmail.getText().toString().trim(),alertDialog,progressDialog);
+        });
         btnBackToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view1) {

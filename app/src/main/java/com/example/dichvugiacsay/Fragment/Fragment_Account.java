@@ -42,7 +42,7 @@ public class Fragment_Account extends Fragment {
             tvFullname.setText(user.getName());
             tvSdt.setText(user.getPhone());
 
-        rlDonHang.setOnClickListener(v->{
+            rlDonHang.setOnClickListener(v->{
                 Intent i = new Intent(getContext(), OrderActivity.class);
                 i.putExtra("user", user);
                 startActivity(i);
