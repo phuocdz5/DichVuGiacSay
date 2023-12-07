@@ -121,7 +121,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("user ser" , user.toString()+service.getId());
-                cartDAO.insert(user, service.getId()+"", new Fragment_Cart(),1);
+                cartDAO.insert(user, service.getId()+"");
             }
         });
         btndanhgia.setOnClickListener(new View.OnClickListener() {

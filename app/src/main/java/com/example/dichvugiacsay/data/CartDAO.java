@@ -117,16 +117,13 @@ public class CartDAO {
 
         requestQueue.add(stringRequest);
     }
-    public void insert(User user, String iddichvu,Fragment fragment, int index){
+    public void insert(User user, String iddichvu){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, insertURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(context, "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
-                if(index==0) {
-                    MainActivity activity = (MainActivity) context;
-                    activity.fragmentData(fragment);
-                }
+
             }
         }, new Response.ErrorListener() {
             @Override
