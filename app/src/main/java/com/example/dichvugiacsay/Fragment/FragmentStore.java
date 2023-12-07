@@ -127,7 +127,7 @@ public class FragmentStore extends Fragment {
                 serviceAdapter = new ServiceAdapter((ArrayList<Service>) obj, getActivity(), new ServiceAdapter.AddCart() {
                     @Override
                     public void addcart(int idService) {
-                        cartDAO.insert(user, idService+"", new Fragment_Cart(),0);
+                        cartDAO.insert(user, idService+"");
                     }
                 });
                 recyclerView.setAdapter(serviceAdapter);
