@@ -27,7 +27,7 @@ import com.example.dichvugiacsay.data.UserDAO;
 
 public class Fragment_Account extends Fragment {
     private MainActivity activity;
-    private RelativeLayout rlInfo,rlChangePass, rlLogout,rlDeleteAccount,rlDonHang;
+    private RelativeLayout rlInfo,rlChangePass, rlLogout,rlDonHang;
     private TextView tvFullname,tvSdt;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,33 +38,12 @@ public class Fragment_Account extends Fragment {
             rlDonHang = view.findViewById(R.id.rlDonHang);
             rlChangePass = view.findViewById(R.id.rlChangePass);
             rlLogout = view.findViewById(R.id.rlLogout);
-            rlDeleteAccount = view.findViewById(R.id.rlDeleteAccount);
             tvFullname = view.findViewById(R.id.tv_UserName);
             tvSdt = view.findViewById(R.id.tv_SDT);
             activity = (MainActivity) getActivity();
             User user = activity.getUser();
             tvFullname.setText(user.getName());
             tvSdt.setText(user.getPhone());
-            rlDeleteAccount.setOnClickListener(v->{
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Thông báo");
-                builder.setMessage("Bạn có muốn xoá tài khoản không?");
-                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        UserDAO userDAO = new UserDAO(getContext());
-                        userDAO.deletePassword(user.getEmail());
-                    }
-                });
-                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-            });
             rlDonHang.setOnClickListener(v->{
                 Intent i = new Intent(getContext(), OrderActivity.class);
                 i.putExtra("user", user);
@@ -85,7 +64,9 @@ public class Fragment_Account extends Fragment {
             rlLogout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(getActivity(), Login.class));
+                    Intent intent = new Intent(getActivity(), Login.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                 }
             });
 

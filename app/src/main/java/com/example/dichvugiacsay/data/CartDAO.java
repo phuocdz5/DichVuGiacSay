@@ -1,11 +1,16 @@
 package com.example.dichvugiacsay.data;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -14,8 +19,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.dichvugiacsay.MainActivity;
 import com.example.dichvugiacsay.Model.Cart;
 import com.example.dichvugiacsay.Model.User;
+import com.example.dichvugiacsay.R;
+import com.example.dichvugiacsay.ServiceDetailActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -109,12 +117,16 @@ public class CartDAO {
 
         requestQueue.add(stringRequest);
     }
-    public void insert(User user, String iddichvu){
+    public void insert(User user, String iddichvu,Fragment fragment, int index){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, insertURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(context, "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                if(index==0) {
+                    MainActivity activity = (MainActivity) context;
+                    activity.fragmentData(fragment);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -160,4 +172,6 @@ public class CartDAO {
         };
         requestQueue.add(stringRequest);
     }
+
+
 }

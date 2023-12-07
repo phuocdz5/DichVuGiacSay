@@ -58,7 +58,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             holder.price.setText((cart.getQuantity() * cart.getPriceService())+"");
             holder.quantity.setText(cart.getQuantity()+"");
             holder.description.setText(cart.getDescription());
-
             holder.choice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -68,6 +67,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
 //                    Log.e("atuan list ", arrpprice.toString());
                     }else{
+
                         for (int i = 0; i < arrpprice.size(); i++) {
                             if (arrpprice.get(i).getIdService() == cart.getIdService()){
                                 arrpprice.remove(i);

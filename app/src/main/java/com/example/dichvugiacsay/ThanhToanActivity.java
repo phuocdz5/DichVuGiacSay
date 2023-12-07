@@ -133,6 +133,7 @@ public class ThanhToanActivity extends AppCompatActivity {
                     setBtndathang(address, ngaydathang, (tienhangkship+15000)+"",getIdDonHang()+"", cartArrayList);
                     Toast.makeText(ThanhToanActivity.this, "Đã nhận được đơn hàng", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(ThanhToanActivity.this, OrderActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     i.putExtra("user", user);
                     startActivity(i);
                     finish();
