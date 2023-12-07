@@ -49,7 +49,7 @@ public class OrderDetailRatingAdapter extends RecyclerView.Adapter<OrderDetailRa
         holder.img.setImageResource(idimg);
         holder.id.setText("#"+orderDetail.getIdOrder());
         holder.name.setText(orderDetail.getName());
-        holder.price.setText(orderDetail.getPrice()+"");
+        holder.price.setText(orderDetail.getPrice()+" đ");
         holder.quantity.setText(orderDetail.getQuantity()+"");
         holder.status.setText("Đã hoàn thành");
         holder.orderAgain.setOnClickListener(new View.OnClickListener() {

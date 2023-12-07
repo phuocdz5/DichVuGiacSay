@@ -45,7 +45,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
         int idimg = context.getResources().getIdentifier("drawable/"+ service.getImg(), null, context.getPackageName());
         holder.img.setImageResource(idimg);
         holder.name.setText(service.getName());
-        holder.price.setText(service.getPrice());
+        holder.price.setText(service.getPrice() +" đ");
         holder.description.setText(service.getDescription());
         holder.add.setOnClickListener(new View.OnClickListener() {
             @Override

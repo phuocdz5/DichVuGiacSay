@@ -255,5 +255,4 @@ public class Fragment_HomePage extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),fragment).commit();
     }
 
-
 }
