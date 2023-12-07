@@ -65,6 +65,7 @@ public class Fragment_Info extends Fragment {
                         edtName.setText(user.getName());
                         edtPhone.setText(user.getPhone());
                         Toast.makeText(getContext(), "Thông tin đã được thay đổi", Toast.LENGTH_SHORT).show();
+                        loadFragment(new Fragment_Account());
                     }
                 });
                 return;

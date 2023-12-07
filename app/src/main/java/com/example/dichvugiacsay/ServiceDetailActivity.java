@@ -1,6 +1,7 @@
 package com.example.dichvugiacsay;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,11 +15,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.dichvugiacsay.Adapter.DanhGiaAdapter;
+import com.example.dichvugiacsay.Fragment.Fragment_Cart;
 import com.example.dichvugiacsay.Model.DanhGia;
 import com.example.dichvugiacsay.Model.Service;
 import com.example.dichvugiacsay.Model.User;
@@ -118,7 +121,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("user ser" , user.toString()+service.getId());
-                cartDAO.insert(user, service.getId()+"");
+                cartDAO.insert(user, service.getId()+"", new Fragment_Cart(),1);
             }
         });
         btndanhgia.setOnClickListener(new View.OnClickListener() {
@@ -166,4 +169,5 @@ public class ServiceDetailActivity extends AppCompatActivity {
         });
         alertDialog.show();
     }
+
 }

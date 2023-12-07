@@ -37,6 +37,7 @@ public class UserDAO {
 
     private String changInfoURL = IP.IP + "/giatsay/userChangInfo.php";
     private String forgotPass = IP.IP + "/giatsay/forgot.php";
+
     private Context context;
     public UserDAO(Context context) {
         this.context = context;
@@ -54,7 +55,7 @@ public class UserDAO {
                         String result = jsonObject.getString("status");
 
                         if (result.equals("success")) {
-                            JSONArray userArray = jsonObject.getJSONArray("users"); // Thay đổi tên khóa thành "user"
+                            JSONArray userArray = jsonObject.getJSONArray("users");
                             JSONObject userObject = userArray.getJSONObject(0);
                             User user = new User(
                                     userObject.getString("id"),
@@ -66,7 +67,7 @@ public class UserDAO {
                             rememberUS.remember();
                             Intent intent = new Intent(context, MainActivity.class);
                             intent.putExtra("user", user);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             context.startActivity(intent);
                         } else {
                             Toast.makeText(context, "Tài khoản mật khẩu không đúng", Toast.LENGTH_SHORT).show();
@@ -116,7 +117,7 @@ public class UserDAO {
                         context.startActivity(new Intent(context ,  Login.class));
                         Toast.makeText(context, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                     }else {
-                        Toast.makeText(context, "Email đã đăng ký rồi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Username hoặc Email đã tồn tại!!!", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
