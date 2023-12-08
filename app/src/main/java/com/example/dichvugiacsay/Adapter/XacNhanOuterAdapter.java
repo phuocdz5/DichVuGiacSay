@@ -55,7 +55,7 @@ public class XacNhanOuterAdapter extends RecyclerView.Adapter<XacNhanOuterAdapte
 
         holder.date.setText(donHangOuter.getDate());
         holder.id.setText("#" +donHangOuter.getId());
-        holder.ship.setText("Phí vận chuyển:" + donHangOuter.getShip() + " đ");
+        holder.ship.setText("Phí vận chuyển:" + donHangOuter.getShip() + " VNĐ");
 
     }
 
@@ -92,7 +92,7 @@ public class XacNhanOuterAdapter extends RecyclerView.Adapter<XacNhanOuterAdapte
                 for (int i = 0; i < arr.size() ; i++) {
                     tongtienhang += (arr.get(i).getPrice() * arr.get(i).getQuantitty());
                 }
-                price.setText("Tổng tiền: "+(tongtienhang + ship) + " đ");
+                price.setText("Tổng tiền: "+(tongtienhang + ship) + " VNĐ");
                 donHangAdapter = new DonHangAdapter(arr, context);
                 LinearLayoutManager l = new LinearLayoutManager(context);
                 l.setOrientation(LinearLayoutManager.VERTICAL);

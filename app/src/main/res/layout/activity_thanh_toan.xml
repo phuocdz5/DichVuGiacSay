@@ -139,7 +139,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="đ 15.000"
+                        android:text="15.000 VNĐ"
                         android:textSize="12dp"
                         android:textStyle="bold"
                         android:gravity="right"
@@ -248,7 +248,7 @@
                                 android:layout_margin="3dp"
                                 android:gravity="end"
                                 android:textSize="12dp"
-                                android:text="đ 15.000"/>
+                                android:text="15.000 VNĐ"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

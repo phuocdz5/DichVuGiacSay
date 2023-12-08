@@ -78,7 +78,7 @@ public class GiaoHangAdapter extends RecyclerView.Adapter<GiaoHangAdapter.ViewHo
                 for (int i = 0; i < arr.size(); i++) {
                     sumprice += (arr.get(i).getPrice() * arr.get(i).getQuantitty());
                 }
-                txt.setText("Tổng tiền: "+ (sumprice + ship) +"đ");
+                txt.setText("Tổng tiền: "+ (sumprice + ship) +"VNĐ");
                 donHangAdapter = new DonHangAdapter(arr, context);
                 rcv.setAdapter(donHangAdapter);
             }
