@@ -101,7 +101,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
             }
         });
         name.setText(sv.getName());
-        price.setText(sv.getPrice());
+        price.setText(sv.getPrice()+ " VNĐ");
         description.setText(sv.getDescription());
 
         ratingDAO.getTotalStar(sv.getId() + "", new RatingDAO.RatingITF() {

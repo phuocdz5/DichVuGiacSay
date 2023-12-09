@@ -53,6 +53,18 @@ public class Fragment_Info extends Fragment {
             String strphone = edtPhone.getText().toString().trim();
             String stremail = edtEmail.getText().toString().trim();
             String straddress = edtAddress.getText().toString().trim();
+
+            // Kiểm tra định dạng email
+            if (!isValidEmail(stremail)) {
+                Toast.makeText(getContext(), "Sai định dạng email!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Kiểm tra định dạng số điện thoại
+            if (!isValidPhoneNumber(strphone)) {
+                Toast.makeText(getContext(), "Số điện thoại phải có đúng 10 số và bắt đầu bằng số 0", Toast.LENGTH_SHORT).show();
+                return;
+            }
             user.setName(strname);
             user.setAddress(straddress);
             user.setPhone(strphone);
@@ -65,7 +77,6 @@ public class Fragment_Info extends Fragment {
                         edtName.setText(user.getName());
                         edtPhone.setText(user.getPhone());
                         Toast.makeText(getContext(), "Thông tin đã được thay đổi", Toast.LENGTH_SHORT).show();
-                        loadFragment(new Fragment_Account());
                     }
                 });
                 return;
@@ -74,7 +85,14 @@ public class Fragment_Info extends Fragment {
         });
         return view;
     }
-
+    public boolean isValidEmail(String email) {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        return email.matches(emailPattern);
+    }
+    public boolean isValidPhoneNumber(String phoneNumber) {
+        // Kiểm tra xem chuỗi chỉ chứa đúng 10 ký tự số và bắt đầu bằng số 0
+        return phoneNumber.matches("^0[0-9]{9}$");
+    }
     private boolean validateForm(String str){
         return (str.isEmpty() || str.equals("")) ? false : true;
     }

@@ -52,10 +52,12 @@
                         android:textSize="18sp"
                         android:id="@+id/xacNhan_quantity"/>
                     <TextView
+                        android:textAlignment="textEnd"
                         android:layout_width="0dp"
                         android:layout_weight="7"
                         android:layout_height="wrap_content"
                         android:text="0 vnd"
+                        android:layout_marginRight="10dp"
                         android:textStyle="bold"
                         android:textSize="18sp"
                         android:textColor="#F44336"

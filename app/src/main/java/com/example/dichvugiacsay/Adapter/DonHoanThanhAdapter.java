@@ -87,7 +87,7 @@ public class DonHoanThanhAdapter extends RecyclerView.Adapter<DonHoanThanhAdapte
                 for (int i = 0; i < arr.size(); i++) {
                     sumprice += (arr.get(i).getPrice() * arr.get(i).getQuantitty());
                 }
-                txt.setText("Tổng tiền: "+ (sumprice + 15000) +"đ");
+                txt.setText("Tổng tiền: "+ (sumprice + 15000) +"VNĐ");
                 donHangAdapter = new DonHangAdapter(arr, context);
                 rcv.setAdapter(donHangAdapter);
             }

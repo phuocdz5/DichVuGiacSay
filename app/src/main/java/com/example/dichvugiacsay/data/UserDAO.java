@@ -70,7 +70,7 @@ public class UserDAO {
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             context.startActivity(intent);
                         } else {
-                            Toast.makeText(context, "Tài khoản mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Tài khoản hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         Toast.makeText(context, "Lỗi xử lý JSON", Toast.LENGTH_SHORT).show();
@@ -99,10 +99,30 @@ public class UserDAO {
 
     }
 
+    public boolean isValidEmail(String email) {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        return email.matches(emailPattern);
+    }
+    public boolean isValidPhoneNumber(String phoneNumber) {
+        // Kiểm tra xem chuỗi chỉ chứa đúng 10 ký tự số và bắt đầu bằng số 0
+        return phoneNumber.matches("^0[0-9]{9}$");
+    }
+
     // reg account
     public void setRegAccount(String name, String email, String phone, String us, String pw){
         if (validateForm(name) && validateForm(email) && validateForm(phone) &&validateForm(us) && validateForm(pw)){
             Toast.makeText(context, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        // Kiểm tra định dạng email
+        if (!isValidEmail(email)) {
+            Toast.makeText(context, "Sai định dạng email!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Kiểm tra định dạng số điện thoại
+        if (!isValidPhoneNumber(phone)) {
+            Toast.makeText(context, "Số điện thoại phải có đúng 10 số và bắt đầu bằng số 0", Toast.LENGTH_SHORT).show();
             return;
         }
 

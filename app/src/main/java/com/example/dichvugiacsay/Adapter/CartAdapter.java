@@ -55,7 +55,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             int idImg = context.getResources().getIdentifier("drawable/"+cart.getImg(), null , context.getPackageName() );
             holder.img.setImageResource(idImg);
             holder.name.setText(cart.getNameService());
-            holder.price.setText((cart.getQuantity() * cart.getPriceService())+"");
+            holder.price.setText((cart.getQuantity() * cart.getPriceService())+" VNĐ");
             holder.quantity.setText(cart.getQuantity()+"");
             holder.description.setText(cart.getDescription());
             holder.choice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

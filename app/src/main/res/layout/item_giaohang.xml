@@ -47,10 +47,11 @@
                 android:id="@+id/giaohang_outer_status"
                 android:layout_weight="5"/>
             <TextView
+                android:textAlignment="textEnd"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Đang xử lí"
-                android:gravity="center"
+                android:layout_marginRight="10dp"
                 android:textColor="#F44336"
                 android:id="@+id/giaohang_outer_price"
                 android:layout_weight="5"/>
