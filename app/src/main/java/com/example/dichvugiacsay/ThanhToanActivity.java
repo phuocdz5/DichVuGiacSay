@@ -100,12 +100,12 @@ public class ThanhToanActivity extends AppCompatActivity {
         for (int i = 0; i < cartArrayList.size(); i++) {
             tienhangkship += cartArrayList.get(i).getQuantity() * cartArrayList.get(i).getPriceService();
         }
-        Locale localeVN = new Locale("vi","VN");
-        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeVN);
-        String tienhangkshipdinhdang = numberFormat.format(tienhangkship);
-        String tongtienhangformat = numberFormat.format(tienhangkship+15000);
-        txttongtienhang.setText(tongtienhangformat);
-        txttienhang.setText(tienhangkshipdinhdang);
+//        Locale localeVN = new Locale("vi","VN");
+//        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeVN);
+//        String tienhangkshipdinhdang = numberFormat.format(tienhangkship);
+//        String tongtienhangformat = numberFormat.format(tienhangkship+15000);
+        txttongtienhang.setText((tienhangkship+15000)+" VNĐ");
+        txttienhang.setText(tienhangkship+" VNĐ");
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
